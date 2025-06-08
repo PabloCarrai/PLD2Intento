@@ -1,31 +1,91 @@
+"""
+
+Hay un error que no logre resolver. 
+En ciertas ocasiones cuando elegia una opcion invalida. 
+Se repetia el menu y dejaba de responder a una opcion valida. 
+Asi que ahora cuando me equivoco con una opcion invalido. 
+Termino el programa.     
+    
+"""
+nombres = []
+apellidos = []
+dnis = []
+direcciones = []
+
+
+def listarElemento():
+    for x in range(len(nombres)):
+        print(f"""
+
+              ID: {x}
+              Nombre: {nombres[x]}
+              Apellido: {apellidos[x]}
+              DNI: {dnis[x]}
+              Direccion: {direcciones[x]}
+              
+              """)
+    menuPrincipal()
+
+
+def cargarElemento():
+    nombre = input("Ingrese Nombre ")
+    apellido = input("Ingrese Apellido ")
+    dni = input("Ingrese DNI ")
+    direccion = input("Ingrese Direccion ")
+    nombres.append(nombre)
+    apellidos.append(apellido)
+    dnis.append(dni)
+    direcciones.append(direccion)
+    menuPrincipal()
+
+
+def menu(eleccion):
+    print(f"""
+          
+          1) Cargar {eleccion}
+          2) Listar {eleccion} 
+          3) Editar {eleccion}
+          4) Borrar {eleccion}
+          5) Volver
+          
+          
+          """)
+    elegir = int(input("Ingrese su eleccion "))
+    while (elegir < 1 or elegir > 5):
+        print("Elija una opcion valida ")
+        elegir = int(input("Ingrese su eleccion "))
+    if (elegir == 1):
+        cargarElemento()
+    elif (elegir == 2):
+        listarElemento()
+
+
 def salir():
     print("Hasta la proxima")
     exit()
 
 
 def opcionesValidas(eleccion):
-    while (eleccion>4 or eleccion<1):
+    while (eleccion > 4 or eleccion < 1):
         print("Elija una opcion valida")
-        menuPrincipal()
-    if (eleccion==4):
+        salir()
+    if (eleccion == 4):
         salir()
     else:
         abm(eleccion)
 
 
-def menuSecundario(resultado):
-    print(resultado)
-    
-
 def abm(eleccion):
-    resultado=""
-    if (eleccion==1):
-        resultado="cliente"
-    elif(eleccion==2):
-        resultado="producto"
-    elif(eleccion==3):
-        resultado="factura"
-    menuSecundario(resultado)
+    resultado = ""
+    if (eleccion == 1):
+        resultado = "Cliente"
+        menu(resultado)
+    elif (eleccion == 2):
+        resultado = "Producto"
+        menu(resultado)
+    elif (eleccion == 3):
+        resultado = "Factura"
+        menu(resultado)
 
 
 def menuPrincipal():
@@ -40,9 +100,8 @@ def menuPrincipal():
           
           
           """)
-    eleccion=int(input("Ingrese una opcion:  "))
+    eleccion = int(input("Ingrese una opcion:  "))
     opcionesValidas(eleccion)
-          
 
 
-menuPrincipal()    
+menuPrincipal()
