@@ -17,11 +17,9 @@ def listarElemento():
     for x in range(len(nombres)):
         print(f"""
 
-              ID: {x}
-              Nombre: {nombres[x]}
-              Apellido: {apellidos[x]}
-              DNI: {dnis[x]}
-              Direccion: {direcciones[x]}
+    ID: {x} 
+    Nombre: {nombres[x]} Apellido: {apellidos[x]}
+    DNI: {dnis[x]} Direccion: {direcciones[x]}
               
               """)
     menuPrincipal()
@@ -58,6 +56,12 @@ def menu(eleccion):
         cargarElemento()
     elif (elegir == 2):
         listarElemento()
+    elif (elegir == 3):
+        pass
+    elif (elegir == 4):
+        pass
+    elif (elegir == 5):
+        menuPrincipal()
 
 
 def salir():
