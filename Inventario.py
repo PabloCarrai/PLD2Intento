@@ -13,6 +13,13 @@ dnis = []
 direcciones = []
 
 
+def adonde(menu):
+    if (menu == 1):
+        menuPrincipal()
+    elif (menu == 2):
+        abm()
+
+
 def listarElemento():
     for x in range(len(nombres)):
         print(f"""
@@ -37,6 +44,11 @@ def cargarElemento():
     menuPrincipal()
 
 
+def editarElemento():
+    listarElemento()
+    eleccion = int(input("Ingrese id del cliente a editar  "))
+
+
 def menu(eleccion):
     print(f"""
           
@@ -57,7 +69,7 @@ def menu(eleccion):
     elif (elegir == 2):
         listarElemento()
     elif (elegir == 3):
-        pass
+        editarElemento()
     elif (elegir == 4):
         pass
     elif (elegir == 5):
@@ -108,4 +120,4 @@ def menuPrincipal():
     opcionesValidas(eleccion)
 
 
-menuPrincipal()
+adonde(1)
