@@ -1,41 +1,59 @@
+def salir():
+    exit()
+
+
+def validarEleccionMCliente(eleccion):
+    if (eleccion == 1):
+        print("Alta Cliente")
+    elif (eleccion == 2):
+        print("Baja Cliente")
+    elif (eleccion == 3):
+        print("Modificacion Cliente")
+    elif (eleccion == 4):
+        salir()
+
+
+def menuFactura():
+    pass
+
+
+def menuProducto():
+    pass
+
+
 def menuCliente():
     print("""
     1) Alta Cliente
     2) Baja Cliente
     3) Modificacion Cliente
-    4) Salir      
+    4) Salir
     """)
     eleccion = int(input("Ingrese una opcion"))
-    validarOpcion(eleccion)
+    validarEleccionMCliente(eleccion)
 
 
-def moverseMenu(eleccion):
+def validarEleccion():
+    eleccion = int(input("Elija una opcion"))
+    while (eleccion < 1 or eleccion > 4):
+        eleccion = int(input("Elija una opcion valida"))
     if (eleccion == 1):
         menuCliente()
     elif (eleccion == 2):
-        pass
+        menuProducto()
     elif (eleccion == 3):
-        pass
+        menuFactura()
     elif (eleccion == 4):
-        pass
+        salir()
 
 
-def validarOpcion(eleccion):
-    while (eleccion < 1 or eleccion > 4):
-        eleccion = int(input("Ingrese una opcion Valida"))
-    moverseMenu(eleccion)
-
-
-def mostrarMenu():
-    print("Bienvenido")
+def menuPrincipal():
     print("""
     1) ABM Cliente
     2) ABM Producto
     3) ABM Factura
     4) Salir
     """)
-    eleccion = int(input("Ingrese una opcion"))
-    validarOpcion(eleccion)
+    validarEleccion()
 
 
-mostrarMenu()
+menuPrincipal()
