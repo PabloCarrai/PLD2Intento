@@ -8,6 +8,9 @@ direcciones = []
 nproductos = []
 stockproductos = []
 precioproductos = []
+#   Lista necesarias para el ABM de la Factura
+facturas = []
+ffacturas = []
 
 
 def salir():
@@ -50,6 +53,18 @@ def edicionCliente():
     menuCliente()
 
 
+def bajaFactura():
+    """
+    Funcion para eliminar un Factura
+    """
+    #   Aca listamos producto sin ir al menu luego del listado
+    listadoFactura(0)
+    eleccion = int(input("Ingrese un id valido "))
+    del (facturas[eleccion])
+    del (ffacturas[eleccion])
+    menuFactura()
+
+
 def bajaProducto():
     """
     Funcion para eliminar un producto
@@ -76,6 +91,22 @@ def bajaCliente():
     del (dnis[eleccion])
     del (telefonos[eleccion])
     menuCliente()
+
+
+def listadoFactura(valor):
+    """
+    Aca procedemos a mostrar las facturas
+    """
+    print("Productos: ")
+    for x in range(len(facturas)):
+        print(f"""
+          Id: {x}
+          Codigo: {facturas[x]}  Fecha: {ffacturas[x]}
+        """)
+    #   Aca puede suceder que no necesitemos si o si ir al menu factura
+    #   Si pasamos como valor 1 vamos al menu factura, sino no
+    if (valor == 1):
+        menuFactura()
 
 
 def listadoProducto(valor):
@@ -111,6 +142,17 @@ def listadoCliente(valor):
     #   Si pasamos como valor 1 vamos al menu cliente, sino no
     if (valor == 1):
         menuCliente()
+
+
+def altaFactura():
+    ccc = int(input("Cuantos facturas quiere cargar? "))
+    for i in range(ccc):
+        factura = input("Codigo?")
+        ffactura = input("Fecha?")
+        facturas.append(factura)
+        ffacturas.append(ffactura)
+        print("Carga Realizada ")
+    menuFactura()
 
 
 def altaProducto():
@@ -151,12 +193,37 @@ def altaCliente():
     menuCliente()
 
 
+def validarEleccionMFactura(eleccion):
+    """
+    Validamos las opciones del factura
+    """
+    while (eleccion < 1 or eleccion > 6):
+        eleccion = int(input("Elija una opcion valida "))
+    if (eleccion == 1):
+        print("Alta Factura")
+        altaFactura()
+    elif (eleccion == 2):
+        print("Baja Factura")
+        bajaFactura()
+    elif (eleccion == 3):
+        print("Modificacion Factura")
+        # edicionProducto()
+    elif (eleccion == 4):
+        print("Listado de Factura")
+        listadoFactura(1)
+    elif (eleccion == 5):
+        print("Volver al menu Principal")
+        menuPrincipal()
+    elif (eleccion == 6):
+        salir()
+
+
 def validarEleccionMProducto(eleccion):
     """
     Validamos las opciones del cliente
     """
     while (eleccion < 1 or eleccion > 6):
-        eleccion = int(input("Elija una opcion valida"))
+        eleccion = int(input("Elija una opcion valida "))
     if (eleccion == 1):
         print("Alta Producto")
         altaProducto()
@@ -181,7 +248,7 @@ def validarEleccionMCliente(eleccion):
     Validamos las opciones del cliente
     """
     while (eleccion < 1 or eleccion > 6):
-        eleccion = int(input("Elija una opcion valida"))
+        eleccion = int(input("Elija una opcion valida "))
     if (eleccion == 1):
         print("Alta Cliente")
         altaCliente()
@@ -202,7 +269,19 @@ def validarEleccionMCliente(eleccion):
 
 
 def menuFactura():
-    pass
+    """
+    Menu de Factura
+    """
+    print("""
+    1) Alta Factura
+    2) Baja Factura
+    3) Modificacion Factura
+    4) Listado de Factura
+    5) Volver al menu Principal
+    6) Salir
+    """)
+    eleccion = int(input("Ingrese una opcion "))
+    validarEleccionMFactura(eleccion)
 
 
 def menuProducto():
@@ -217,7 +296,7 @@ def menuProducto():
     5) Volver al menu Principal
     6) Salir
     """)
-    eleccion = int(input("Ingrese una opcion"))
+    eleccion = int(input("Ingrese una opcion "))
     validarEleccionMProducto(eleccion)
 
 
@@ -233,7 +312,7 @@ def menuCliente():
     5) Volver al menu Principal
     6) Salir
     """)
-    eleccion = int(input("Ingrese una opcion"))
+    eleccion = int(input("Ingrese una opcion "))
     validarEleccionMCliente(eleccion)
 
 
@@ -242,9 +321,9 @@ def validarEleccion():
     Validamos que el usuario elija una opcion valida
     sino se la volvemos a pedir. 
     """
-    eleccion = int(input("Elija una opcion"))
+    eleccion = int(input("Elija una opcion "))
     while (eleccion < 1 or eleccion > 4):
-        eleccion = int(input("Elija una opcion valida"))
+        eleccion = int(input("Elija una opcion valida "))
     #   En el caso de ser una opcion valida, salimos a las opciones del menu
     if (eleccion == 1):
         menuCliente()
