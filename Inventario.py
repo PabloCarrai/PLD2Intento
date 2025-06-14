@@ -17,6 +17,20 @@ def salir():
     exit()
 
 
+def edicionFactura():
+    """
+    Edicion de factura
+    """
+    listadoFactura(0)
+    eleccion = int(input("Ingrese un id valido "))
+    factura = input("Codigo?")
+    ffactura = input("Fecha?")
+    facturas[eleccion] = factura
+    ffacturas[eleccion] = ffactura
+    print("Factura editado ")
+    menuFactura()
+
+
 def edicionProducto():
     """
     Edicion de producto
@@ -97,11 +111,12 @@ def listadoFactura(valor):
     """
     Aca procedemos a mostrar las facturas
     """
-    print("Productos: ")
+    print("Facturas: ")
     for x in range(len(facturas)):
         print(f"""
-          Id: {x}
-          Codigo: {facturas[x]}  Fecha: {ffacturas[x]}
+         Id: {x}
+           Codigo: {facturas[x]}  
+          Fecha: {ffacturas[x]}
         """)
     #   Aca puede suceder que no necesitemos si o si ir al menu factura
     #   Si pasamos como valor 1 vamos al menu factura, sino no
@@ -207,7 +222,7 @@ def validarEleccionMFactura(eleccion):
         bajaFactura()
     elif (eleccion == 3):
         print("Modificacion Factura")
-        # edicionProducto()
+        edicionFactura()
     elif (eleccion == 4):
         print("Listado de Factura")
         listadoFactura(1)
