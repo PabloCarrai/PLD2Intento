@@ -14,8 +14,24 @@ def salir():
     exit()
 
 
+def edicionProducto():
+    """
+    Edicion de producto
+    """
+    listadoProducto(0)
+    eleccion = int(input("Ingrese un id valido "))
+    nproducto = input("Nombre?  ")
+    sproducto = int(input("Stock? "))
+    pproducto = int(input("Precio? "))
+    nproductos[eleccion] = nproducto
+    stockproductos[eleccion] = sproducto
+    precioproductos[eleccion] = pproducto
+    print("Producto editado ")
+    menuProducto()
+
+
 def edicionCliente():
-    """ 
+    """
     Edicion de cliente
     """
     listadoCliente(0)
@@ -34,9 +50,22 @@ def edicionCliente():
     menuCliente()
 
 
+def bajaProducto():
+    """
+    Funcion para eliminar un producto
+    """
+    #   Aca listamos producto sin ir al menu luego del listado
+    listadoProducto(0)
+    eleccion = int(input("Ingrese un id valido "))
+    del (nproductos[eleccion])
+    del (stockproductos[eleccion])
+    del (precioproductos[eleccion])
+    menuProducto()
+
+
 def bajaCliente():
     """
-    Funcon para eliminar un cliente
+    Funcion para eliminar un cliente
     """
     #   Aca listamos cliente sin ir al menu luego del listado
     listadoCliente(0)
@@ -47,6 +76,23 @@ def bajaCliente():
     del (dnis[eleccion])
     del (telefonos[eleccion])
     menuCliente()
+
+
+def listadoProducto(valor):
+    """
+    Aca procedemos a mostrar los productos
+    """
+    print("Productos: ")
+    for x in range(len(nproductos)):
+        print(f"""
+          Id: {x}
+          Nombre: {nproductos[x]}  Stock: {stockproductos[x]}
+          Precio: ${precioproductos[x]}
+              """)
+    #   Aca puede suceder que no necesitemos si o si ir al menu producto
+    #   Si pasamos como valor 1 vamos al menu producto, sino no
+    if (valor == 1):
+        menuProducto()
 
 
 def listadoCliente(valor):
@@ -81,7 +127,7 @@ def altaProducto():
         stockproductos.append(sproducto)
         precioproductos.append(pproducto)
         print("Carga Realizada ")
-        menuCliente()
+    menuProducto()
 
 
 def altaCliente():
@@ -102,7 +148,7 @@ def altaCliente():
         telefonos.append(telefono)
         direcciones.append(direccion)
         print("Carga Realizada ")
-        menuCliente()
+    menuCliente()
 
 
 def validarEleccionMProducto(eleccion):
@@ -116,13 +162,13 @@ def validarEleccionMProducto(eleccion):
         altaProducto()
     elif (eleccion == 2):
         print("Baja Producto")
-        bajaCliente()
+        bajaProducto()
     elif (eleccion == 3):
         print("Modificacion Producto")
-        edicionCliente()
+        edicionProducto()
     elif (eleccion == 4):
         print("Listado de Producto")
-        listadoCliente(1)
+        listadoProducto(1)
     elif (eleccion == 5):
         print("Volver al menu Principal")
         menuPrincipal()
