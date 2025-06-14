@@ -1,8 +1,13 @@
+#   Listas necesarias para el ABM del cliente
 nombres = []
 apellidos = []
 dnis = []
 telefonos = []
 direcciones = []
+#   Listas necesarias para el ABM del Producto
+nproductos = []
+stockproductos = []
+precioproductos = []
 
 
 def salir():
@@ -10,6 +15,9 @@ def salir():
 
 
 def edicionCliente():
+    """ 
+    Edicion de cliente
+    """
     listadoCliente(0)
     eleccion = int(input("Ingrese un id valido "))
     nombre = input("Nombre?  ")
@@ -27,6 +35,10 @@ def edicionCliente():
 
 
 def bajaCliente():
+    """
+    Funcon para eliminar un cliente
+    """
+    #   Aca listamos cliente sin ir al menu luego del listado
     listadoCliente(0)
     eleccion = int(input("Ingrese un id valido "))
     del (nombres[eleccion])
@@ -38,6 +50,9 @@ def bajaCliente():
 
 
 def listadoCliente(valor):
+    """ 
+    Aca procedemos a mostrar los clientes 
+    """
     print("Clientes: ")
     for x in range(len(nombres)):
         print(f"""
@@ -46,11 +61,33 @@ def listadoCliente(valor):
           Direccion: {direcciones[x]}
           DNI: {dnis[x]} Telefono: {telefonos[x]}              
               """)
+    #   Aca puede suceder que no necesitemos si o si ir al menu cliente
+    #   Si pasamos como valor 1 vamos al menu cliente, sino no
     if (valor == 1):
         menuCliente()
 
 
+def altaProducto():
+    """ 
+    Alta de producto
+    """
+    print("Bienvenido ")
+    ccc = int(input("Cuantos productos quiere cargar? "))
+    for i in range(ccc):
+        nproducto = input("Nombre?  ")
+        sproducto = int(input("Stock? "))
+        pproducto = int(input("Precio? "))
+        nproductos.append(nproducto)
+        stockproductos.append(sproducto)
+        precioproductos.append(pproducto)
+        print("Carga Realizada ")
+        menuCliente()
+
+
 def altaCliente():
+    """
+    Generamos el alta de un cliente
+    """
     print("Bienvenido ")
     ccc = int(input("Cuantos clientes quiere cargar? "))
     for i in range(ccc):
@@ -68,7 +105,35 @@ def altaCliente():
         menuCliente()
 
 
+def validarEleccionMProducto(eleccion):
+    """
+    Validamos las opciones del cliente
+    """
+    while (eleccion < 1 or eleccion > 6):
+        eleccion = int(input("Elija una opcion valida"))
+    if (eleccion == 1):
+        print("Alta Producto")
+        altaProducto()
+    elif (eleccion == 2):
+        print("Baja Producto")
+        bajaCliente()
+    elif (eleccion == 3):
+        print("Modificacion Producto")
+        edicionCliente()
+    elif (eleccion == 4):
+        print("Listado de Producto")
+        listadoCliente(1)
+    elif (eleccion == 5):
+        print("Volver al menu Principal")
+        menuPrincipal()
+    elif (eleccion == 6):
+        salir()
+
+
 def validarEleccionMCliente(eleccion):
+    """
+    Validamos las opciones del cliente
+    """
     while (eleccion < 1 or eleccion > 6):
         eleccion = int(input("Elija una opcion valida"))
     if (eleccion == 1):
@@ -95,10 +160,25 @@ def menuFactura():
 
 
 def menuProducto():
-    pass
+    """
+    Menu de Productos
+    """
+    print("""
+    1) Alta Producto
+    2) Baja Producto
+    3) Modificacion Producto
+    4) Listado de Producto
+    5) Volver al menu Principal
+    6) Salir
+    """)
+    eleccion = int(input("Ingrese una opcion"))
+    validarEleccionMProducto(eleccion)
 
 
 def menuCliente():
+    """
+    Este es el menu de cliente del ABM
+    """
     print("""
     1) Alta Cliente
     2) Baja Cliente
@@ -112,9 +192,14 @@ def menuCliente():
 
 
 def validarEleccion():
+    """
+    Validamos que el usuario elija una opcion valida
+    sino se la volvemos a pedir. 
+    """
     eleccion = int(input("Elija una opcion"))
     while (eleccion < 1 or eleccion > 4):
         eleccion = int(input("Elija una opcion valida"))
+    #   En el caso de ser una opcion valida, salimos a las opciones del menu
     if (eleccion == 1):
         menuCliente()
     elif (eleccion == 2):
@@ -126,6 +211,9 @@ def validarEleccion():
 
 
 def menuPrincipal():
+    """
+    Menu principal de la aplicacion
+    """
     print("""
     1) ABM Cliente
     2) ABM Producto
@@ -135,4 +223,5 @@ def menuPrincipal():
     validarEleccion()
 
 
+#   Cargamos el menu principal
 menuPrincipal()
