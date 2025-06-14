@@ -11,6 +11,8 @@ precioproductos = []
 #   Lista necesarias para el ABM de la Factura
 facturas = []
 ffacturas = []
+#   Lista con todo lo que tiene la Factura
+facturaFull = []
 
 
 def salir():
@@ -160,14 +162,40 @@ def listadoCliente(valor):
 
 
 def altaFactura():
-    ccc = int(input("Cuantos facturas quiere cargar? "))
-    for i in range(ccc):
-        factura = input("Codigo?")
-        ffactura = input("Fecha?")
-        facturas.append(factura)
-        ffacturas.append(ffactura)
-        print("Carga Realizada ")
-    menuFactura()
+    #   Pedir datos de la factura a crear
+    factura = input("Codigo?")
+    ffactura = input("Fecha?")
+    #   Muestro los clientes disponibles
+    listadoCliente(0)
+    eleccioncliente = int(input("Ingrese un id valido "))
+    #   Muestro los productos disponibles
+    listadoProducto(0)
+    eleccionproducto = int(input("Ingrese un id valido "))
+    #   Guardo los datos de la factura
+    facturas.append(factura)
+    ffacturas.append(ffactura)
+    print(f"""
+          {facturas[eleccioncliente]} {ffacturas[eleccioncliente]} 
+          {nombres[eleccioncliente]} {apellidos[eleccioncliente]} 
+          {dnis[eleccioncliente]} {telefonos[eleccioncliente]} 
+          {direcciones[eleccioncliente]} 
+          {nproductos[eleccioncliente]} 
+          {stockproductos[eleccioncliente]} 
+          {precioproductos[eleccioncliente]}
+        """)
+
+    #   Me traigo los datos del cliente por indice
+    # nombres[eleccioncliente]
+    # apellidos[eleccioncliente]
+    # dnis[eleccioncliente]
+    # telefonos[eleccioncliente]
+    # direcciones[eleccioncliente]
+    #   Me traigo los datos del producto por indice
+    # nproductos[eleccioncliente]
+    # stockproductos[eleccioncliente]
+    # precioproductos[eleccioncliente]
+    # print("Carga Realizada ")
+    # menuFactura()
 
 
 def altaProducto():
