@@ -69,6 +69,18 @@ def edicionCliente():
     menuCliente()
 
 
+def bajaCompra():
+    """
+    Funcion para eliminar un Compra
+    """
+    #   Aca listamos producto sin ir al menu luego del listado
+    listadoCompra(0)
+    eleccion = int(input("Ingrese un id valido "))
+    del (facturaFull[eleccion])
+    print("Compra eliminada")
+    menuCompra()
+
+
 def bajaFactura():
     """
     Funcion para eliminar un Factura
@@ -107,6 +119,22 @@ def bajaCliente():
     del (dnis[eleccion])
     del (telefonos[eleccion])
     menuCliente()
+
+
+def listadoCompra(valor):
+    """
+    Aca procedemos a mostrar las compras
+    """
+    print("Compras: ")
+    for x in facturaFull:
+        print(f"""
+         {x}
+           
+        """)
+    #   Aca puede suceder que no necesitemos si o si ir al menu factura
+    #   Si pasamos como valor 1 vamos al menu factura, sino no
+    if (valor == 1):
+        menuCompra()
 
 
 def listadoFactura(valor):
@@ -161,41 +189,36 @@ def listadoCliente(valor):
         menuCliente()
 
 
-def altaFactura():
-    #   Pedir datos de la factura a crear
-    factura = input("Codigo?")
-    ffactura = input("Fecha?")
-    #   Muestro los clientes disponibles
+def altaCompra():
+    print("Bienvenido ")
     listadoCliente(0)
-    eleccioncliente = int(input("Ingrese un id valido "))
-    #   Muestro los productos disponibles
+    eleccioncliente = int(input("Elija un id valido "))
     listadoProducto(0)
-    eleccionproducto = int(input("Ingrese un id valido "))
-    #   Guardo los datos de la factura
-    facturas.append(factura)
-    ffacturas.append(ffactura)
-    print(f"""
-          {facturas[eleccioncliente]} {ffacturas[eleccioncliente]} 
-          {nombres[eleccioncliente]} {apellidos[eleccioncliente]} 
-          {dnis[eleccioncliente]} {telefonos[eleccioncliente]} 
-          {direcciones[eleccioncliente]} 
-          {nproductos[eleccioncliente]} 
-          {stockproductos[eleccioncliente]} 
-          {precioproductos[eleccioncliente]}
-        """)
+    eleccionproducto = int(input("Elija un id valido "))
+    cproductos = int(input("Cantidad de producto a comprar "))
+    compra = [
+        f"Cliente: {nombres[eleccioncliente]}",
+        f"DNI: {dnis[eleccioncliente]}",
+        f"Telefono: {telefonos[eleccioncliente]}",
+        f"Direccion: {direcciones[eleccioncliente]}",
+        f"Producto: {nproductos[eleccionproducto]}",
+        f"Cantidad: {cproductos}",
+        f"Total: ${cproductos * precioproductos[eleccionproducto]}"]
+    facturaFull.append(compra)
+    print("Compra Cargada")
+    menuCompra()
 
-    #   Me traigo los datos del cliente por indice
-    # nombres[eleccioncliente]
-    # apellidos[eleccioncliente]
-    # dnis[eleccioncliente]
-    # telefonos[eleccioncliente]
-    # direcciones[eleccioncliente]
-    #   Me traigo los datos del producto por indice
-    # nproductos[eleccioncliente]
-    # stockproductos[eleccioncliente]
-    # precioproductos[eleccioncliente]
-    # print("Carga Realizada ")
-    # menuFactura()
+
+def altaFactura():
+    print("Bienvenido ")
+    ccc = int(input("Cuantos factura quiere cargar? "))
+    for i in range(ccc):
+        #   Pedir datos de la factura a crear
+        factura = input("Codigo?")
+        ffactura = input("Fecha?")
+        facturas.append(factura)
+        ffacturas.append(ffactura)
+    menuFactura()
 
 
 def altaProducto():
@@ -234,6 +257,31 @@ def altaCliente():
         direcciones.append(direccion)
         print("Carga Realizada ")
     menuCliente()
+
+
+def validarEleccionMCompra(eleccion):
+    """
+    Validamos las opciones del menu Compra
+    """
+    while (eleccion < 1 or eleccion > 6):
+        eleccion = int(input("Elija una opcion valida "))
+    if (eleccion == 1):
+        print("Alta Compra")
+        altaCompra()
+    elif (eleccion == 2):
+        print("Baja Compra")
+        bajaCompra()
+    elif (eleccion == 3):
+        print("Modificacion Compra")
+        # edicionFactura()
+    elif (eleccion == 4):
+        print("Listado de Compra")
+        listadoCompra(1)
+    elif (eleccion == 5):
+        print("Volver al menu Principal")
+        menuPrincipal()
+    elif (eleccion == 6):
+        salir()
 
 
 def validarEleccionMFactura(eleccion):
@@ -311,6 +359,22 @@ def validarEleccionMCliente(eleccion):
         salir()
 
 
+def menuCompra():
+    """
+    Menu de Compra
+    """
+    print("""
+    1) Alta Compra
+    2) Baja Compra
+    3) Modificacion Compra
+    4) Listado de Compra
+    5) Volver al menu Principal
+    6) Salir
+    """)
+    eleccion = int(input("Ingrese una opcion "))
+    validarEleccionMCompra(eleccion)
+
+
 def menuFactura():
     """
     Menu de Factura
@@ -365,7 +429,7 @@ def validarEleccion():
     sino se la volvemos a pedir. 
     """
     eleccion = int(input("Elija una opcion "))
-    while (eleccion < 1 or eleccion > 4):
+    while (eleccion < 1 or eleccion > 5):
         eleccion = int(input("Elija una opcion valida "))
     #   En el caso de ser una opcion valida, salimos a las opciones del menu
     if (eleccion == 1):
@@ -375,6 +439,8 @@ def validarEleccion():
     elif (eleccion == 3):
         menuFactura()
     elif (eleccion == 4):
+        menuCompra()
+    elif (eleccion == 5):
         salir()
 
 
@@ -386,7 +452,8 @@ def menuPrincipal():
     1) ABM Cliente
     2) ABM Producto
     3) ABM Factura
-    4) Salir
+    4) Compra
+    5) Salir
     """)
     validarEleccion()
 
