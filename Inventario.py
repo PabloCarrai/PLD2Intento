@@ -19,6 +19,38 @@ def salir():
     exit()
 
 
+def edicionCompra():
+    """
+    Edicion Compra. 
+    Solo editamos el stock del producto a comprar
+    Pero lo hacemos como cargar de nuevo el listado
+    """
+    listadoCompra(0)
+    eleccion = int(input("Ingrese un id valido "))
+    listadoFactura(0)
+    eleccionfactura = int(input("Elija un id valido "))
+    listadoCliente(0)
+    eleccioncliente = int(input("Elija un id valido "))
+    listadoProducto(0)
+    eleccionproducto = int(input("Elija un id valido "))
+    cproductos = int(input("Cantidad de producto a comprar "))
+    compra = [
+        f"Codigo: {facturas[eleccionfactura]}",
+        f"Fecha: {ffacturas[eleccionfactura]}",
+        f"Cliente: {nombres[eleccioncliente]}",
+        f"DNI: {dnis[eleccioncliente]}",
+        f"Telefono: {telefonos[eleccioncliente]}",
+        f"Direccion: {direcciones[eleccioncliente]}",
+        f"Producto: {nproductos[eleccionproducto]}",
+        f"Cantidad: {cproductos}",
+        f"Total: ${cproductos * precioproductos[eleccionproducto]}"]
+    facturaFull[eleccion] = compra
+    print("Compra Cargada")
+    menuCompra()
+
+    pass
+
+
 def edicionFactura():
     """
     Edicion de factura
@@ -126,9 +158,10 @@ def listadoCompra(valor):
     Aca procedemos a mostrar las compras
     """
     print("Compras: ")
-    for x in facturaFull:
+    for x in range(len(facturaFull)):
         print(f"""
-         {x}
+        id:{x} 
+         {facturaFull[x]}
            
         """)
     #   Aca puede suceder que no necesitemos si o si ir al menu factura
@@ -191,12 +224,16 @@ def listadoCliente(valor):
 
 def altaCompra():
     print("Bienvenido ")
+    listadoFactura(0)
+    eleccionfactura = int(input("Elija un id valido "))
     listadoCliente(0)
     eleccioncliente = int(input("Elija un id valido "))
     listadoProducto(0)
     eleccionproducto = int(input("Elija un id valido "))
     cproductos = int(input("Cantidad de producto a comprar "))
     compra = [
+        f"Codigo: {facturas[eleccionfactura]}",
+        f"Fecha: {ffacturas[eleccionfactura]}",
         f"Cliente: {nombres[eleccioncliente]}",
         f"DNI: {dnis[eleccioncliente]}",
         f"Telefono: {telefonos[eleccioncliente]}",
@@ -273,7 +310,7 @@ def validarEleccionMCompra(eleccion):
         bajaCompra()
     elif (eleccion == 3):
         print("Modificacion Compra")
-        # edicionFactura()
+        edicionCompra()
     elif (eleccion == 4):
         print("Listado de Compra")
         listadoCompra(1)
