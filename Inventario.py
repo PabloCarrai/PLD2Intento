@@ -1,3 +1,7 @@
+#   Importamos modulo os para limpiar pantalla
+import os
+
+
 #   Listas necesarias para el ABM del cliente
 nombres = []
 apellidos = []
@@ -13,6 +17,13 @@ facturas = []
 ffacturas = []
 #   Lista con todo lo que tiene la Factura
 facturaFull = []
+
+
+def limpiarPantalla():
+    """
+    Limpiamos la pantalla dependiendo del SO
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def salir():
@@ -485,13 +496,12 @@ def menuPrincipal():
     """
     Menu principal de la aplicacion
     """
-    print("""
-    1) ABM Cliente
-    2) ABM Producto
-    3) ABM Factura
-    4) Compra
-    5) Salir
-    """)
+    limpiarPantalla()
+    print("1) "+"\033[1;33m"+"ABM Cliente"+'\033[0;m')
+    print("2) "+"\033[1;33m"+"ABM Producto"+'\033[0;m')
+    print("3) "+"\033[1;33m"+"ABM Factura"+'\033[0;m')
+    print("4) "+"\033[1;33m"+"Compra"+'\033[0;m')
+    print("5) "+"\033[1;33m"+"Salir"+'\033[0;m')
     validarEleccion()
 
 
