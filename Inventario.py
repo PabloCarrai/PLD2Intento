@@ -27,6 +27,9 @@ def limpiarPantalla():
 
 
 def salir():
+    """
+    Funcion para salir del programa
+    """
     exit()
 
 
@@ -58,8 +61,6 @@ def edicionCompra():
     facturaFull[eleccion] = compra
     print("Compra Cargada")
     menuCompra()
-
-    pass
 
 
 def edicionFactura():
@@ -234,13 +235,18 @@ def listadoCliente(valor):
 
 
 def altaCompra():
+    """
+    Generamos el alta de la compra
+    """
     print("Bienvenido ")
     listadoFactura(0)
+    #   Para vincular los elementos usamos su indice
     eleccionfactura = int(input("Elija un id valido "))
     listadoCliente(0)
     eleccioncliente = int(input("Elija un id valido "))
     listadoProducto(0)
     eleccionproducto = int(input("Elija un id valido "))
+    #   Solo averiguamos cuantos elementos compraremos para sacar el costo
     cproductos = int(input("Cantidad de producto a comprar "))
     compra = [
         f"Codigo: {facturas[eleccionfactura]}",
@@ -457,7 +463,7 @@ def menuProducto():
 
 def menuCliente():
     """
-    Este es el menu de cliente del ABM
+    Menu de cliente
     """
     print("""
     1) Alta Cliente
@@ -496,12 +502,16 @@ def menuPrincipal():
     """
     Menu principal de la aplicacion
     """
+    #   Solo limpio pantalla con la pantalla inicial
     limpiarPantalla()
+    #   Usamos colores, por eso vamos con print separados
+    print("Bienvenido")
     print("1) "+"\033[1;33m"+"ABM Cliente"+'\033[0;m')
     print("2) "+"\033[1;33m"+"ABM Producto"+'\033[0;m')
     print("3) "+"\033[1;33m"+"ABM Factura"+'\033[0;m')
     print("4) "+"\033[1;33m"+"Compra"+'\033[0;m')
     print("5) "+"\033[1;33m"+"Salir"+'\033[0;m')
+    #   Validamos que elijan un entero entre los que van
     validarEleccion()
 
 
