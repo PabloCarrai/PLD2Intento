@@ -17,6 +17,8 @@ facturas = []
 ffacturas = []
 #   Lista con todo lo que tiene la Factura
 facturaFull = []
+facturaElementos = []
+facturaCompras = []
 
 
 def limpiarPantalla():
@@ -238,6 +240,7 @@ def altaCompra():
     """
     Generamos el alta de la compra
     """
+    total = 0
     print("Bienvenido ")
     listadoFactura(0)
     #   Para vincular los elementos usamos su indice
@@ -247,8 +250,46 @@ def altaCompra():
     listadoProducto(0)
     eleccionproducto = int(input("Elija un id valido "))
     #   Solo averiguamos cuantos elementos compraremos para sacar el costo
-    cproductos = int(input("Cantidad de producto a comprar "))
-    compra = [
+    # cproductos = int(input("Cantidad de producto a comprar "))
+    ccompras = int(input("Cuantos productos va a elegir?    "))
+    for i in range(ccompras):
+        listadoProducto(0)
+        eleccionproducto = int(input("Elija un id valido "))
+        cproductos = int(input("Cuantos? "))
+        productosComprados = [f"Producto: {nproductos[eleccionproducto]}",
+                              f"Cantidad: {cproductos}",
+                              f"Total: ${cproductos * precioproductos[eleccionproducto]}"]
+        total = total + (cproductos * precioproductos[eleccionproducto])
+        facturaCompras.append([productosComprados])
+
+    datosFacturaElementos = [
+        f"Codigo: {facturas[eleccionfactura]}",
+        f"Fecha: {ffacturas[eleccionfactura]}",
+        f"Cliente: {nombres[eleccioncliente]}",
+        f"DNI: {dnis[eleccioncliente]}",
+        f"Telefono: {telefonos[eleccioncliente]}",
+        f"Direccion: {direcciones[eleccioncliente]}"]
+    facturaElementos.append(datosFacturaElementos)
+    # facturaCompras=[]
+    print(datosFacturaElementos)
+    for x in datosFacturaElementos:
+        print(x)
+    for i in range(len(facturaCompras)):
+        print(f"{facturaCompras[i]}")
+    print("Compra Cargada")
+
+    for e in facturaCompras:
+        for x in e:
+            for i in x:
+                print(i)
+
+    print(f"Gasto total: {total}")
+    print("Compra Cargada")
+    menuCompra()
+
+    """
+
+    #compra = [
         f"Codigo: {facturas[eleccionfactura]}",
         f"Fecha: {ffacturas[eleccionfactura]}",
         f"Cliente: {nombres[eleccioncliente]}",
@@ -258,9 +299,8 @@ def altaCompra():
         f"Producto: {nproductos[eleccionproducto]}",
         f"Cantidad: {cproductos}",
         f"Total: ${cproductos * precioproductos[eleccionproducto]}"]
-    facturaFull.append(compra)
-    print("Compra Cargada")
-    menuCompra()
+    #facturaFull.append(compra)
+    """
 
 
 def altaFactura():
