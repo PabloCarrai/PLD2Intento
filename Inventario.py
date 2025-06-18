@@ -277,6 +277,7 @@ def altaCompra():
     for i in range(len(facturaCompras)):
         print(f"{facturaCompras[i]}")
     print("Compra Cargada")
+    print("Puto")
 
     for e in facturaCompras:
         for x in e:
