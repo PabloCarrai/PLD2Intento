@@ -19,6 +19,7 @@ ffacturas = []
 facturaFull = []
 facturaElementos = []
 facturaCompras = []
+totales = []
 
 
 def limpiarPantalla():
@@ -172,12 +173,15 @@ def listadoCompra(valor):
     Aca procedemos a mostrar las compras
     """
     print("Compras: ")
-    for x in range(len(facturaFull)):
-        print(f"""
-        id:{x} 
-         {facturaFull[x]}
-           
-        """)
+    for x in range(len(facturaElementos)):
+        print(f"{x}{facturaElementos[x]} ")
+    # print(f"{facturaElementos} {len(facturaElementos)}")
+    # print(f"{facturaCompras} {len(facturaCompras)}")
+    for e in facturaCompras:
+        for x in e:
+            for i in x:
+                print(i)
+    print(totales)
     #   Aca puede suceder que no necesitemos si o si ir al menu factura
     #   Si pasamos como valor 1 vamos al menu factura, sino no
     if (valor == 1):
@@ -247,10 +251,7 @@ def altaCompra():
     eleccionfactura = int(input("Elija un id valido "))
     listadoCliente(0)
     eleccioncliente = int(input("Elija un id valido "))
-    listadoProducto(0)
-    eleccionproducto = int(input("Elija un id valido "))
     #   Solo averiguamos cuantos elementos compraremos para sacar el costo
-    # cproductos = int(input("Cantidad de producto a comprar "))
     ccompras = int(input("Cuantos productos va a elegir?    "))
     for i in range(ccompras):
         listadoProducto(0)
@@ -261,7 +262,6 @@ def altaCompra():
                               f"Total: ${cproductos * precioproductos[eleccionproducto]}"]
         total = total + (cproductos * precioproductos[eleccionproducto])
         facturaCompras.append([productosComprados])
-
     datosFacturaElementos = [
         f"Codigo: {facturas[eleccionfactura]}",
         f"Fecha: {ffacturas[eleccionfactura]}",
@@ -270,38 +270,9 @@ def altaCompra():
         f"Telefono: {telefonos[eleccioncliente]}",
         f"Direccion: {direcciones[eleccioncliente]}"]
     facturaElementos.append(datosFacturaElementos)
-    # facturaCompras=[]
-    print(datosFacturaElementos)
-    for x in datosFacturaElementos:
-        print(x)
-    for i in range(len(facturaCompras)):
-        print(f"{facturaCompras[i]}")
-    print("Compra Cargada")
-    print("Puto")
-
-    for e in facturaCompras:
-        for x in e:
-            for i in x:
-                print(i)
-
-    print(f"Gasto total: {total}")
+    totales.append(total)
     print("Compra Cargada")
     menuCompra()
-
-    """
-
-    #compra = [
-        f"Codigo: {facturas[eleccionfactura]}",
-        f"Fecha: {ffacturas[eleccionfactura]}",
-        f"Cliente: {nombres[eleccioncliente]}",
-        f"DNI: {dnis[eleccioncliente]}",
-        f"Telefono: {telefonos[eleccioncliente]}",
-        f"Direccion: {direcciones[eleccioncliente]}",
-        f"Producto: {nproductos[eleccionproducto]}",
-        f"Cantidad: {cproductos}",
-        f"Total: ${cproductos * precioproductos[eleccionproducto]}"]
-    #facturaFull.append(compra)
-    """
 
 
 def altaFactura():
