@@ -16,7 +16,7 @@ precioproductos = []
 facturas = []
 ffacturas = []
 #   Lista con todo lo que tiene la Factura
-facturaFull = []
+# facturaFull = []
 facturaElementos = []
 facturaCompras = []
 totales = []
@@ -34,36 +34,6 @@ def salir():
     Funcion para salir del programa
     """
     exit()
-
-
-def edicionCompra():
-    """
-    Edicion Compra. 
-    Solo editamos el stock del producto a comprar
-    Pero lo hacemos como cargar de nuevo el listado
-    """
-    listadoCompra(0)
-    eleccion = int(input("Ingrese un id valido "))
-    listadoFactura(0)
-    eleccionfactura = int(input("Elija un id valido "))
-    listadoCliente(0)
-    eleccioncliente = int(input("Elija un id valido "))
-    listadoProducto(0)
-    eleccionproducto = int(input("Elija un id valido "))
-    cproductos = int(input("Cantidad de producto a comprar "))
-    compra = [
-        f"Codigo: {facturas[eleccionfactura]}",
-        f"Fecha: {ffacturas[eleccionfactura]}",
-        f"Cliente: {nombres[eleccioncliente]}",
-        f"DNI: {dnis[eleccioncliente]}",
-        f"Telefono: {telefonos[eleccioncliente]}",
-        f"Direccion: {direcciones[eleccioncliente]}",
-        f"Producto: {nproductos[eleccionproducto]}",
-        f"Cantidad: {cproductos}",
-        f"Total: ${cproductos * precioproductos[eleccionproducto]}"]
-    facturaFull[eleccion] = compra
-    print("Compra Cargada")
-    menuCompra()
 
 
 def edicionFactura():
@@ -116,18 +86,6 @@ def edicionCliente():
     menuCliente()
 
 
-def bajaCompra():
-    """
-    Funcion para eliminar un Compra
-    """
-    #   Aca listamos producto sin ir al menu luego del listado
-    listadoCompra(0)
-    eleccion = int(input("Ingrese un id valido "))
-    del (facturaFull[eleccion])
-    print("Compra eliminada")
-    menuCompra()
-
-
 def bajaFactura():
     """
     Funcion para eliminar un Factura
@@ -173,15 +131,16 @@ def listadoCompra(valor):
     Aca procedemos a mostrar las compras
     """
     print("Compras: ")
-    for x in range(len(facturaElementos)):
-        print(f"{x}{facturaElementos[x]} ")
-    # print(f"{facturaElementos} {len(facturaElementos)}")
-    # print(f"{facturaCompras} {len(facturaCompras)}")
+    for x in facturaElementos:
+        for i in x:
+            print(f"{i} ")
     for e in facturaCompras:
         for x in e:
             for i in x:
                 print(i)
-    print(totales)
+    for i in totales:
+        print(f"Total Gastado ${i}")
+    totales.clear()
     #   Aca puede suceder que no necesitemos si o si ir al menu factura
     #   Si pasamos como valor 1 vamos al menu factura, sino no
     if (valor == 1):
@@ -280,8 +239,8 @@ def altaFactura():
     ccc = int(input("Cuantos factura quiere cargar? "))
     for i in range(ccc):
         #   Pedir datos de la factura a crear
-        factura = input("Codigo?")
-        ffactura = input("Fecha?")
+        factura = input("Codigo?  ")
+        ffactura = input("Fecha?  ")
         facturas.append(factura)
         ffacturas.append(ffactura)
     menuFactura()
@@ -329,24 +288,18 @@ def validarEleccionMCompra(eleccion):
     """
     Validamos las opciones del menu Compra
     """
-    while (eleccion < 1 or eleccion > 6):
+    while (eleccion < 1 or eleccion > 4):
         eleccion = int(input("Elija una opcion valida "))
     if (eleccion == 1):
         print("Alta Compra")
         altaCompra()
     elif (eleccion == 2):
-        print("Baja Compra")
-        bajaCompra()
-    elif (eleccion == 3):
-        print("Modificacion Compra")
-        edicionCompra()
-    elif (eleccion == 4):
         print("Listado de Compra")
         listadoCompra(1)
-    elif (eleccion == 5):
+    elif (eleccion == 3):
         print("Volver al menu Principal")
         menuPrincipal()
-    elif (eleccion == 6):
+    elif (eleccion == 4):
         salir()
 
 
@@ -431,11 +384,9 @@ def menuCompra():
     """
     print("""
     1) Alta Compra
-    2) Baja Compra
-    3) Modificacion Compra
-    4) Listado de Compra
-    5) Volver al menu Principal
-    6) Salir
+    2) Listado de Compra
+    3) Volver al menu Principal
+    4) Salir
     """)
     eleccion = int(input("Ingrese una opcion "))
     validarEleccionMCompra(eleccion)
