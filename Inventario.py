@@ -141,6 +141,8 @@ def listadoCompra(valor):
     for i in totales:
         print(f"Total Gastado ${i}")
     totales.clear()
+    facturaElementos.clear()
+    facturaCompras.clear()
     #   Aca puede suceder que no necesitemos si o si ir al menu factura
     #   Si pasamos como valor 1 vamos al menu factura, sino no
     if (valor == 1):
@@ -384,7 +386,7 @@ def menuCompra():
     """
     print("""
     1) Alta Compra
-    2) Listado de Compra
+    2) Visualizar Compra
     3) Volver al menu Principal
     4) Salir
     """)
