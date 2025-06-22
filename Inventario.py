@@ -36,12 +36,25 @@ def salir():
     exit()
 
 
+def validarIndice(lista):
+    """
+    La eleccion es el indice que se usa en las listas
+    Las Listas contienen los datos que trabajamos. 
+    Esto es para evitar que alguien elija un indice 
+    de una lista inexistente en cuanto a sus elementos
+    """
+    eleccion = int(input("Ingrese un id valido "))
+    while (eleccion not in range(len(lista))):
+        eleccion = int(input("Ingrese un id valido(existente) "))
+    return eleccion
+
+
 def edicionFactura():
     """
     Edicion de factura
     """
     listadoFactura(0)
-    eleccion = int(input("Ingrese un id valido "))
+    eleccion = validarIndice(facturas)
     factura = input("Codigo? ")
     ffactura = input("Fecha? ")
     facturas[eleccion] = factura
@@ -55,7 +68,7 @@ def edicionProducto():
     Edicion de producto
     """
     listadoProducto(0)
-    eleccion = int(input("Ingrese un id valido "))
+    eleccion = validarIndice(nproductos)
     nproducto = input("Nombre?  ")
     sproducto = int(input("Stock? "))
     pproducto = int(input("Precio? "))
@@ -71,7 +84,7 @@ def edicionCliente():
     Edicion de cliente
     """
     listadoCliente(0)
-    eleccion = int(input("Ingrese un id valido "))
+    eleccion = validarIndice(nombres)
     nombre = input("Nombre?  ")
     apellido = input("Apellido? ")
     dni = input("DNI? ")
@@ -92,7 +105,7 @@ def bajaFactura():
     """
     #   Aca listamos producto sin ir al menu luego del listado
     listadoFactura(0)
-    eleccion = int(input("Ingrese un id valido "))
+    eleccion = validarIndice(facturas)
     del (facturas[eleccion])
     del (ffacturas[eleccion])
     menuFactura()
@@ -104,7 +117,7 @@ def bajaProducto():
     """
     #   Aca listamos producto sin ir al menu luego del listado
     listadoProducto(0)
-    eleccion = int(input("Ingrese un id valido "))
+    eleccion = validarIndice(nproductos)
     del (nproductos[eleccion])
     del (stockproductos[eleccion])
     del (precioproductos[eleccion])
@@ -117,7 +130,7 @@ def bajaCliente():
     """
     #   Aca listamos cliente sin ir al menu luego del listado
     listadoCliente(0)
-    eleccion = int(input("Ingrese un id valido "))
+    eleccion = validarIndice(nombres)
     del (nombres[eleccion])
     del (apellidos[eleccion])
     del (direcciones[eleccion])
@@ -209,14 +222,14 @@ def altaCompra():
     print("Bienvenido ")
     listadoFactura(0)
     #   Para vincular los elementos usamos su indice
-    eleccionfactura = int(input("Elija un id valido "))
+    eleccionfactura = validarIndice(facturas)
     listadoCliente(0)
-    eleccioncliente = int(input("Elija un id valido "))
+    eleccioncliente = validarIndice(nombres)
     #   Solo averiguamos cuantos elementos compraremos para sacar el costo
     ccompras = int(input("Cuantos productos va a elegir?    "))
     for i in range(ccompras):
         listadoProducto(0)
-        eleccionproducto = int(input("Elija un id valido "))
+        eleccionproducto = validarIndice(nproductos)
         cproductos = int(input("Cuantos? "))
         productosComprados = [f"Producto: {nproductos[eleccionproducto]}",
                               f"Cantidad: {cproductos}",
