@@ -42,8 +42,8 @@ def edicionFactura():
     """
     listadoFactura(0)
     eleccion = int(input("Ingrese un id valido "))
-    factura = input("Codigo?")
-    ffactura = input("Fecha?")
+    factura = input("Codigo? ")
+    ffactura = input("Fecha? ")
     facturas[eleccion] = factura
     ffacturas[eleccion] = ffactura
     print("Factura editado ")
